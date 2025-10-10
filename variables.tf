@@ -86,9 +86,36 @@ variable "mtu" {
   description = "(Optional) Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes. Default is '1460'."
 }
 
-variable "google_compute_network_enabled" {
+variable "network_enabled" {
   type        = bool
   default     = true
   description = "A boolean flag to enable/disable vpc."
 }
 
+#---------------------------------------------------------------------------------------------------------
+# shared_vpc_variable #
+#----------------------------------------------------------------------------------------------------------
+
+variable "host_project_id" {
+  description = "Google Cloud Project ID"
+  type        = string
+  default     = null
+}
+
+variable "shared_vpc_host_enabled" {
+  type        = bool
+  default     = false
+  description = "Set to false to disable the creation of Google Compute Engine shared VPC host project."
+}
+
+variable "service_project_id" {
+  description = "The ID of the project that will serve as a Shared VPC service project"
+  type        = string
+  default     = null
+}
+
+variable "deletion_policy" {
+  description = "Deletion policy for the shared VPC service project. Use 'ABANDON' to abandon instead of delete."
+  type        = string
+  default     = null
+}

@@ -13,4 +13,9 @@ output "self_link" {
   description = "The URI of the created resource"
 }
 
+output "vpc_name" {
+  value       = join("", google_compute_network.vpc_network[*].name)
+  description = "The outputs of the created VPC Name."
+}
+
 
