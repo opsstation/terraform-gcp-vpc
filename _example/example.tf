@@ -9,8 +9,8 @@ provider "google" {
 #-----------------------------------------------------------------
 module "vpc" {
   source                                    = "../"
-  name                                      = "dev"
-  environment                               = "test"
+  name                                      = "vpc"
+  environment                               = "OpsStation"
   label_order                               = ["name", "environment"]
   mtu                                       = 1460
   routing_mode                              = "REGIONAL"
