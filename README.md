@@ -1,30 +1,47 @@
-# Terraform-google-vpc
-# Terraform Google Cloud VPC Module
+# 🏗️ Terraform-google-vpc
 
-This Terraform module provisions a Google Cloud VPC with customizable options.
+[![OpsStation](https://img.shields.io/badge/Made%20by-OpsStation-blue?style=flat-square&logo=terraform)](https://www.opsstation.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Terraform](https://img.shields.io/badge/Terraform-1.6%2B-purple.svg?logo=terraform)](#)
+[![CI](https://github.com/OpsStation/terraform-multicloud-labels/actions/workflows/ci.yml/badge.svg)](https://github.com/OpsStation/terraform-multicloud-labels/actions/workflows/ci.yml)
 
-## Table of Contents
+> 🌩️ **A production-grade, reusable GCP VPC module by [OpsStation](https://www.opsstation.com)**
+> Designed for reliability, performance, and security — following GCP networking best practices.
+---
 
-- [Introduction](#introduction)
-- [Usage](#usage)
-- [Examples](#examples)
-- [License](#license)
-- [Author](#author)
-- [Inputs](#inputs)
-- [Outputs](#outputs)
+## 🏢 About OpsStation
 
-## Introduction
-This Terraform module creates an GCP Virtual Private Cloud (VPC) along with additional configuration options.
+**OpsStation** delivers **Cloud & DevOps excellence** for modern teams:
+- 🚀 **Infrastructure Automation** with Terraform, Ansible & Kubernetes
+- 💰 **Cost Optimization** via scaling & right-sizing
+- 🛡️ **Security & Compliance** baked into CI/CD pipelines
+- ⚙️ **Fully Managed Operations** across GCP, Azure, and GCP
 
-## Usage
+> 💡 Need enterprise-grade DevOps automation?
+> 👉 Visit [**www.opsstation.com**](https://www.opsstation.com) or email **hello@opsstation.com**
 
-To get started, make sure you have configured your GCP provider. You can use the following code as a starting point:
-## Example: vpc
+---
+## 🌟 Features
+
+- ✅ Creates **VPC networks** with full configuration options (custom MTU, routing mode, IPv6 support)
+- ✅ Supports **auto or custom subnet modes** with conditional resource creation
+- ✅ Optional **Shared VPC setup** with host and service project configuration
+- ✅ Integrated with **Google Cloud IAM and project data** via `google_client_config`
+- ✅ Configurable **deletion policy** for service project attachment
+- ✅ Supports **custom labels** using [OpsStation multicloud module](https://registry.terraform.io/modules/opsstation/labels/multicloud/latest)
+- ✅ Production-ready and modular — designed for reuse in multiple environments
+
+---
+
+
+## ⚙️ Usage Example
+### 🧱 Basic VPC Example
 ```hcl
 module "vpc" {
-  source                                    = "git::https://github.com/opsstation/terraform-gcp-vpc.git?ref=v1.0.1"
-  name                                      = "dev"
-  environment                               = "test"
+  source                                    = "opsstation/vpc/GCP"
+  version                                   = "1.0.0"
+  name                                      = "vpc"
+  environment                               = "OpsStation"
   label_order                               = ["name", "environment"]
   mtu                                       = 1460
   routing_mode                              = "REGIONAL"
@@ -32,19 +49,29 @@ module "vpc" {
   network_firewall_policy_enforcement_order = "AFTER_CLASSIC_FIREWALL"
   delete_default_routes_on_create           = false
 }
+
 ```
-Replace the 'source' attribute with the actual path to the module in your project.
+### ☁️ Outputs (GCP VPC Module)
 
-## Examples
-For detailed examples on how to use this module, please refer to the [Examples](https://github.com/opsstation/terraform-gcp-vpc/tree/master/_example) directory within this repository.
+| Name                               | Description                                  |
+|------------------------------------|----------------------------------------------|
+| `vpc_id`                           | The ID of the created VPC network.           |
+| `vpc_name`                         | The name of the created VPC network.         |
+| `self_link`                        | The URI of the created VPC resource.         |
+| `gateway_ipv4`                     | The default IPv4 gateway of the VPC.         |
 
-## License
-This Terraform module is provided under the **MIT** License. Please see the [LICENSE](https://github.com/opsstation/terraform-gcp-vpc/blob/master/LICENSE) file for more details.
 
-## Author
-Your Name
-Replace **MIT** and **Opsstation** with the appropriate license and your information. Feel free to expand this README with additional details or usage instructions as needed for your specific use case.
+---
+### ☁️ Tag Normalization Rules (GCP)
 
+| Cloud | Case      | Allowed Characters | Example                            |
+|--------|-----------|------------------|------------------------------------|
+| **GCP** | TitleCase | Any              | `Name`, `Environment`, `CostCenter` |
+
+---
+
+### 💙 Maintained by [OpsStation](https://www.opsstation.com)
+> OpsStation — Simplifying Cloud, Securing Scale.
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -63,7 +90,7 @@ Replace **MIT** and **Opsstation** with the appropriate license and your informa
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_labels"></a> [labels](#module\_labels) | git::git@github.com:opsstation/terraform-gcp-labels.git | update/module |
+| <a name="module_labels"></a> [labels](#module\_labels) | opsstation/labels/multicloud | 1.0.0 |
 
 ## Resources
 
@@ -87,10 +114,10 @@ Replace **MIT** and **Opsstation** with the appropriate license and your informa
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
 | <a name="input_host_project_id"></a> [host\_project\_id](#input\_host\_project\_id) | Google Cloud Project ID | `string` | `null` | no |
 | <a name="input_internal_ipv6_range"></a> [internal\_ipv6\_range](#input\_internal\_ipv6\_range) | (Optional) When enabling ula internal ipv6, caller optionally can specify the /48 range they want from the google defined ULA prefix fd20::/20. The input must be a valid /48 ULA IPv6 address and must be within the fd20::/20. Operation will fail if the speficied /48 is already in used by another resource. If the field is not speficied, then a /48 range will be randomly allocated from fd20::/20 and returned via this field. | `bool` | `null` | no |
-| <a name="input_label_order"></a> [label\_order](#input\_label\_order) | Label order, e.g. sequence of application name and environment `name`,`environment`,'attribute' [`webserver`,`qa`,`devops`,`public`,] . | `list(any)` | `[]` | no |
+| <a name="input_label_order"></a> [label\_order](#input\_label\_order) | Label order, e.g. sequence of application name and environment `name`,`environment`,'attribute' [`webserver`,`qa`,`devops`,`public`,] . | `list(any)` | <pre>[<br>  "name",<br>  "environment"<br>]</pre> | no |
 | <a name="input_managedby"></a> [managedby](#input\_managedby) | ManagedBy,opsstation'. | `string` | `"opsstation'."` | no |
 | <a name="input_mtu"></a> [mtu](#input\_mtu) | (Optional) Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes. Default is '1460'. | `number` | `1460` | no |
-| <a name="input_name"></a> [name](#input\_name) | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name  (e.g. `app` or `cluster`). | `string` | `"OpsStation"` | no |
 | <a name="input_network_enabled"></a> [network\_enabled](#input\_network\_enabled) | A boolean flag to enable/disable vpc. | `bool` | `true` | no |
 | <a name="input_network_firewall_policy_enforcement_order"></a> [network\_firewall\_policy\_enforcement\_order](#input\_network\_firewall\_policy\_enforcement\_order) | (Optional) Set the order that Firewall Rules and Firewall Policies are evaluated. Default value is AFTER\_CLASSIC\_FIREWALL. Possible values are: BEFORE\_CLASSIC\_FIREWALL, AFTER\_CLASSIC\_FIREWALL | `string` | `"AFTER_CLASSIC_FIREWALL"` | no |
 | <a name="input_repository"></a> [repository](#input\_repository) | Terraform current module repo | `string` | `""` | no |

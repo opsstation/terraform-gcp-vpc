@@ -1,5 +1,6 @@
 module "labels" {
-  source      = "git::git@github.com:opsstation/terraform-gcp-labels.git?ref=update/module"
+  source      = "opsstation/labels/multicloud"
+  version     = "1.0.0"
   name        = var.name
   environment = var.environment
   label_order = var.label_order
@@ -14,7 +15,7 @@ data "google_client_config" "current" {
 resource "google_compute_network" "vpc_network" {
   count                                     = var.network_enabled && var.enabled ? 1 : 0
   project                                   = data.google_client_config.current.project
-  name                                      = format("%s-vpc", module.labels.id)
+  name                                      = module.labels.id
   description                               = var.description
   routing_mode                              = var.routing_mode
   mtu                                       = var.mtu
