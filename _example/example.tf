@@ -10,7 +10,7 @@ provider "google" {
 module "vpc" {
   source                                    = "../"
   name                                      = "vpc"
-  environment                               = "nonprod"
+  environment                               = "prod"
   label_order                               = ["name", "environment"]
   mtu                                       = 1460
   routing_mode                              = "REGIONAL"
