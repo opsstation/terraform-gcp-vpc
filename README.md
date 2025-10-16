@@ -38,8 +38,8 @@
 ### 🧱 Basic VPC Example
 ```hcl
 module "vpc" {
-  source                                    = "opsstation/vpc/GCP"
-  version                                   = "1.0.0"
+  source                                    = "opsstation/vpc/gcp"
+  version                                   = "1.0.1"
   name                                      = "vpc"
   environment                               = "OpsStation"
   label_order                               = ["name", "environment"]
