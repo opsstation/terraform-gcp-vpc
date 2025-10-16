@@ -2,7 +2,7 @@
 #Description : Terraform label module variables.
 variable "name" {
   type        = string
-  default     = ""
+  default     = "OpsStation"
   description = "Name  (e.g. `app` or `cluster`)."
 }
 
