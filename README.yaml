@@ -40,7 +40,7 @@ providers:
 
 module_dependencies:
   - name: Labels Module
-    url: https://github.com/opsstation/terraform-gcp-labels
+    url: https://github.com/opsstation/terraform-multicloud-labels
     description: Provides resource tagging.
 
 #  description of this project
@@ -55,7 +55,7 @@ usage: |-
   ```hcl
       module "vpc" {
       source                                    = "opsstation/vpc/gcp"
-      version                                   = "1.0.0"
+      version                                   = "1.0.1"
       name                                      = "vpc"
       environment                               = "OpsStation"
       label_order                               = ["name", "environment"]
