@@ -1,16 +1,11 @@
-output "id" {
-  value       = module.labels.id
-  description = "Disambiguated ID."
-}
-
-output "tags" {
-  value       = module.labels.tags
-  description = "Normalized Tag map."
-}
-
 output "vpc_id" {
   value       = module.vpc.vpc_id
   description = "The outputs of the created VPC."
+}
+
+output "vpc_name" {
+  value       = module.vpc.vpc_name
+  description = "The outputs of the created VPC Name."
 }
 
 output "gateway_ipv4" {
@@ -22,4 +17,3 @@ output "self_link" {
   value       = module.vpc.self_link
   description = "The URI of the created resource"
 }
-
