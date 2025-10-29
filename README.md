@@ -15,7 +15,7 @@
 - 🚀 **Infrastructure Automation** with Terraform, Ansible & Kubernetes
 - 💰 **Cost Optimization** via scaling & right-sizing
 - 🛡️ **Security & Compliance** baked into CI/CD pipelines
-- ⚙️ **Fully Managed Operations** across GCP, Azure, and GCP
+- ⚙️ **Fully Managed Operations** across GCP, Azure, and AWS
 
 > 💡 Need enterprise-grade DevOps automation?
 > 👉 Visit [**www.opsstation.com**](https://www.opsstation.com) or email **hello@opsstation.com**
