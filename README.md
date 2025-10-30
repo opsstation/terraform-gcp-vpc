@@ -34,7 +34,6 @@
 
 ---
 
-
 ## ⚙️ Usage Example
 ### 🧱 Basic VPC Example
 ```hcl
