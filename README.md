@@ -2,8 +2,9 @@
 
 [![OpsStation](https://img.shields.io/badge/Made%20by-OpsStation-blue?style=flat-square&logo=terraform)](https://www.opsstation.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Terraform](https://img.shields.io/badge/Terraform-1.6%2B-purple.svg?logo=terraform)](#)
-[![CI](https://github.com/OpsStation/terraform-multicloud-labels/actions/workflows/ci.yml/badge.svg)](https://github.com/OpsStation/terraform-multicloud-labels/actions/workflows/ci.yml)
+[![Terraform](https://img.shields.io/badge/Terraform-1.13%2B-purple.svg?logo=terraform)](#)
+[![CI](https://github.com/OpsStation/terraform-gcp-vpc/actions/workflows/ci.yml/badge.svg)](https://github.com/OpsStation/terraform-gcp-vpc/actions/workflows/ci.yml)
+[![Latest Release](https://img.shields.io/github/release/opsstation/terraform-gcp-vpc.svg)](https://github.com/opsstation/terraform-gcp-vpc/releases/latest)
 
 > 🌩️ **A production-grade, reusable GCP VPC module by [OpsStation](https://www.opsstation.com)**
 > Designed for reliability, performance, and security — following GCP networking best practices.
@@ -15,7 +16,7 @@
 - 🚀 **Infrastructure Automation** with Terraform, Ansible & Kubernetes
 - 💰 **Cost Optimization** via scaling & right-sizing
 - 🛡️ **Security & Compliance** baked into CI/CD pipelines
-- ⚙️ **Fully Managed Operations** across GCP, Azure, and GCP
+- ⚙️ **Fully Managed Operations** across GCP, Azure, and AWS
 
 > 💡 Need enterprise-grade DevOps automation?
 > 👉 Visit [**www.opsstation.com**](https://www.opsstation.com) or email **hello@opsstation.com**
@@ -33,7 +34,6 @@
 
 ---
 
-
 ## ⚙️ Usage Example
 ### 🧱 Basic VPC Example
 ```hcl
@@ -45,8 +45,8 @@ module "vpc" {
   label_order                               = ["name", "environment"]
   mtu                                       = 1460
   routing_mode                              = "REGIONAL"
-  network_enabled                           = true
   network_firewall_policy_enforcement_order = "AFTER_CLASSIC_FIREWALL"
+  network_enabled                           = true
   delete_default_routes_on_create           = false
 }
 
