@@ -46,8 +46,8 @@ module "vpc" {
   label_order                               = ["name", "environment"]
   mtu                                       = 1460
   routing_mode                              = "REGIONAL"
-  network_enabled                           = true
   network_firewall_policy_enforcement_order = "AFTER_CLASSIC_FIREWALL"
+  network_enabled                           = true
   delete_default_routes_on_create           = false
 }
 
