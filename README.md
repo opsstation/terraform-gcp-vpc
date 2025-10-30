@@ -1,12 +1,12 @@
-# 🏗️ Terraform-google-vpc
+# 🏗️ {{ name }}
 
-[![OpsStation](https://img.shields.io/badge/Made%20by-OpsStation-blue?style=flat-square&logo=terraform)](https://www.opsstation.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Terraform](https://img.shields.io/badge/Terraform-1.6%2B-purple.svg?logo=terraform)](#)
-[![CI](https://github.com/OpsStation/terraform-multicloud-labels/actions/workflows/ci.yml/badge.svg)](https://github.com/OpsStation/terraform-multicloud-labels/actions/workflows/ci.yml)
+{% for badge in badges %}
+[![{{ badge.name }}]({{ badge.image }})]({{ badge.url }})
+{% endfor %}
 
 > 🌩️ **A production-grade, reusable GCP VPC module by [OpsStation](https://www.opsstation.com)**
 > Designed for reliability, performance, and security — following GCP networking best practices.
+
 ---
 
 ## 🏢 About OpsStation
@@ -21,6 +21,7 @@
 > 👉 Visit [**www.opsstation.com**](https://www.opsstation.com) or email **hello@opsstation.com**
 
 ---
+
 ## 🌟 Features
 
 - ✅ Creates **VPC networks** with full configuration options (custom MTU, routing mode, IPv6 support)
@@ -33,40 +34,25 @@
 
 ---
 
+## ⚙️ Prerequisites
 
-## ⚙️ Usage Example
-### 🧱 Basic VPC Example
-```hcl
-module "vpc" {
-  source                                    = "opsstation/vpc/gcp"
-  version                                   = "1.0.1"
-  name                                      = "vpc"
-  environment                               = "OpsStation"
-  label_order                               = ["name", "environment"]
-  mtu                                       = 1460
-  routing_mode                              = "REGIONAL"
-  network_enabled                           = true
-  network_firewall_policy_enforcement_order = "AFTER_CLASSIC_FIREWALL"
-  delete_default_routes_on_create           = false
-}
-
-```
-### ☁️ Outputs (GCP VPC Module)
-
-| Name                               | Description                                  |
-|------------------------------------|----------------------------------------------|
-| `vpc_id`                           | The ID of the created VPC network.           |
-| `vpc_name`                         | The name of the created VPC network.         |
-| `self_link`                        | The URI of the created VPC resource.         |
-| `gateway_ipv4`                     | The default IPv4 gateway of the VPC.         |
-
+{% for prereq in prerequisites %}
+- [{{ prereq.name }}]({{ prereq.url }}) version {{ prereq.version }}
+  {% endfor %}
 
 ---
-### ☁️ Tag Normalization Rules (GCP)
 
-| Cloud | Case      | Allowed Characters | Example                            |
-|--------|-----------|------------------|------------------------------------|
-| **GCP** | TitleCase | Any              | `Name`, `Environment`, `CostCenter` |
+## ⚙️ Providers
+
+{% for provider in providers %}
+- [{{ provider.name }}]({{ provider.url }}) version {{ provider.version }}
+  {% endfor %}
+
+---
+
+## ⚙️ Usage Example
+
+{{ usage }}
 
 ---
 
